@@ -32,59 +32,48 @@ void flashLEDS(uint8_t redVal, uint8_t greenVal, uint8_t blueVal) {
 }
 
 void bootUp() {
+  //RGB info
   uint8_t redVal{0};
   uint8_t greenVal{200};
   uint8_t blueVal{0};
-  for(int pixelID=0;pixelID<=9;pixelID++) {
+
+  //Noise info
+  uint8_t playTimeMs{75};
+  uint16_t song[10] = {130, 146, 164, 164, 174, 196, 196, 220, 246, 261};
+
+  for(int pixelID=0;pixelID<10;pixelID++) {
     CircuitPlayground.setPixelColor(pixelID, redVal, greenVal, blueVal);
-    delay(750-75*pixelID);
+    CircuitPlayground.playTone(song[pixelID], playTimeMs, true);
   }
   flashLEDS(redVal, greenVal, blueVal);
 }
 
 void antenna() {
+  //RGB info
   uint8_t redVal{100};
   uint8_t greenVal{100};
   uint8_t blueVal{0};
   uint8_t middleLow{2};
   uint8_t middleHigh{7};
-  
+
+  //Noise info
+  uint8_t songLength{3};
+  uint16_t song[songLength] = {130, 164, 196};
+  uint16_t playTimeMs{45};
+
   for (int steps=0;steps<3;steps++) {
     CircuitPlayground.setPixelColor(middleLow+steps, redVal, greenVal, blueVal);
     CircuitPlayground.setPixelColor(middleLow-steps, redVal, greenVal, blueVal);
     CircuitPlayground.setPixelColor(middleHigh+steps, redVal, greenVal, blueVal);
     CircuitPlayground.setPixelColor(middleHigh-steps, redVal, greenVal, blueVal);
-//    delay(300-100*steps);
-    delay(200);
+    for (int noteSpot=0;noteSpot<songLength;noteSpot++) {
+      CircuitPlayground.playTone(song[noteSpot]*(steps+1), playTimeMs, true);
+    }  
+    for (int noteSpot=2;noteSpot>=0;noteSpot--) {
+      CircuitPlayground.playTone(song[noteSpot]*(steps+1), playTimeMs, true);
+    }  
+
+//    delay(200);
   }
   flashLEDS(redVal, greenVal, blueVal);
-}
-
-void laser() {
-  uint8_t maxVal{200};
-//  uint8_t redVal{0};
-  uint8_t greenVal{0};
-  uint8_t blueVal{0};
-  for (uint8_t redVal=0;redVal<=maxVal;redVal+=5) {
-    turnOnLEDS(redVal, greenVal, blueVal);
-    delay(20);
-  }
-  uint8_t redVal{maxVal};
-  flashLEDS(redVal, greenVal, blueVal);
-  turnOffLEDS();
-}
-
-void motor() {
-  uint8_t redVal{0};
-  uint8_t greenVal{0};
-  uint8_t blueVal{200};
-  uint8_t middleLow{2};
-  uint8_t middleHigh{7};
-  uint8_t maxLEDspot{10};
-  for (int cycle=0;cycle<100;cycle++) {
-    CircuitPlayground.setPixelColor((middleLow+cycle)%maxLEDspot, redVal, greenVal, blueVal);
-    CircuitPlayground.setPixelColor((middleHigh+cycle)%maxLEDspot, redVal, greenVal, blueVal);
-    delay(50);
-    turnOffLEDS();
-  }
 }
