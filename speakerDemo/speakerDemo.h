@@ -23,3 +23,13 @@ void antennaSong() {
     }  
   }
 }
+
+void laserSong() {
+  uint8_t songLength{9};
+//  uint16_t song[songLength] = {130, 147, 165, 175, 196, 220, 262, 262, 262};
+  uint16_t song[songLength] = {261, 293, 329, 349, 392, 493, 523, 523, 523};
+  uint16_t playTimeMs{50};
+  for (int noteSpot=0;noteSpot<songLength;noteSpot++) {
+    CircuitPlayground.playTone(song[noteSpot], playTimeMs, true);
+  }  
+}

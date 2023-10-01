@@ -14,6 +14,7 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
 //  powerUp();
-  antenna();
+//  antennaSong();
+  laserSong();
   delay(1000);
 }

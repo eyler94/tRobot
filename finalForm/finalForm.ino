@@ -11,4 +11,7 @@ void loop() {
   bootUp();
   delay(250);
   antenna();
+  delay(250);
+  laser();
+  delay(250);
 }

@@ -77,3 +77,38 @@ void antenna() {
   }
   flashLEDS(redVal, greenVal, blueVal);
 }
+
+void laser() {
+  //RGB info
+  uint8_t maxVal{200};
+  uint8_t redVal{0};
+  uint8_t greenVal{0};
+  uint8_t blueVal{0};
+
+  //Noise info
+  uint8_t songLength{9};
+//  uint16_t song[songLength] = {130, 147, 165, 175, 196, 220, 262, 262, 262};
+  uint16_t song[songLength] = {261, 293, 329, 349, 392, 493, 523, 523, 523};
+  uint16_t playTimeMs{50};
+
+  for (uint8_t step=0; step<6; step++) {
+    CircuitPlayground.playTone(song[step], playTimeMs, false);
+    Serial.print(step);
+    Serial.print(": ");
+    Serial.println(song[step]);
+    redVal = 30 * step;
+    turnOnLEDS(redVal, greenVal, blueVal);
+    delay(20);
+  }
+  redVal = maxVal;
+  for (uint8_t step=6;step<9; step++) {
+    turnOnLEDS(redVal, greenVal, blueVal);
+    CircuitPlayground.playTone(song[step], playTimeMs, true);
+    Serial.print(step);
+    Serial.print(": ");
+    Serial.println(song[step]);
+    delay(20);
+    turnOffLEDS();
+    delay(20);   
+  }
+}

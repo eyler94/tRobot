@@ -1,4 +1,4 @@
-#include "speakerDemo.h"
+#include <Adafruit_CircuitPlayground.h>
 
 uint16_t userTone{220};
 uint16_t playTimeMs{125};
