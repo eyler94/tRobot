@@ -7,11 +7,12 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  bootUp();
-  delay(500);
-  antenna();
-  delay(500);
-  laser();
-  delay(500);
+//  bootUp();
+//  delay(500);
+//  antenna();
+//  delay(500);
+//  laser();
+//  delay(500);
   motor();
+  delay(500);
 }

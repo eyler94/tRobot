@@ -3,7 +3,7 @@
 void setup() {
   // put your setup code here, to run once:
   CircuitPlayground.begin();
-  Serial.begin(9600);
+//  Serial.begin(9600);
 }
 
 void loop() {
@@ -13,5 +13,7 @@ void loop() {
   antenna();
   delay(250);
   laser();
+  delay(250);
+  motor();
   delay(250);
 }

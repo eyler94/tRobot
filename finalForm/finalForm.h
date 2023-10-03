@@ -112,3 +112,27 @@ void laser() {
     delay(20);   
   }
 }
+
+void motor() {
+  //RGB info
+  uint8_t redVal{0};
+  uint8_t greenVal{0};
+  uint8_t blueVal{200};
+  uint8_t middleLow{2};
+  uint8_t middleHigh{7};
+  uint8_t maxLEDspot{10};
+
+  //Song info
+  uint16_t startNote{65};
+  uint16_t playTimeMs{250};
+  
+  for (int cycle=0;cycle<4;cycle++) {
+    CircuitPlayground.playTone(startNote+cycle*5, playTimeMs, false);    
+    for (int ledSpot=0;ledSpot<11;ledSpot++) {
+      CircuitPlayground.setPixelColor((middleLow+ledSpot)%maxLEDspot, redVal, greenVal, blueVal);
+      CircuitPlayground.setPixelColor((middleHigh+ledSpot)%maxLEDspot, redVal, greenVal, blueVal);
+      delay(25);
+      turnOffLEDS();
+    }
+  }
+}
