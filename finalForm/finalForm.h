@@ -13,7 +13,7 @@ void turnOnLEDS(uint8_t redVal, uint8_t greenVal, uint8_t blueVal) {
 }
 
 void flashLEDS(uint8_t redVal, uint8_t greenVal, uint8_t blueVal) {
-  int delayTime{200};
+  int delayTime{150};
   turnOnLEDS(redVal, greenVal, blueVal);
   delay(delayTime);
   turnOffLEDS();
